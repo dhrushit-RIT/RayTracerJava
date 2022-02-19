@@ -1,0 +1,36 @@
+- bounding box
+- primitives
+- objects
+    - intersect
+    - 
+- sphere
+- triangle
+- quad
+- cube (bounding box)
+- world
+    - objects list
+- application
+    - perspective transformation function
+        - convertToWorldSpace , convertToNodeSpace
+- bounding box intersection
+- camera
+    - focal length
+    - 
+- film plane
+    - height
+    - width
+    - num pixels height
+    - num pixels width
+
+- ray
+    - initial
+    - final
+    - normalized direction vector
+- scene
+    - bound by a box to implement kd?
+
+
+- Naming
+    - texture mapping POLICY
+    - 
+    
