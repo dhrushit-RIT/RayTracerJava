@@ -151,11 +151,11 @@ public class Vector {
         return new Vector(0, 0, 0);
     }
 
-    public static Vector cross(Vector v1, Vector v2) {
+    public static Vector cross(Vector a, Vector b) {
         return new Vector(
-                v1.y * v2.z - v1.x * v2.y,
-                v1.z * v2.x - v1.x * v2.z,
-                v1.x * v2.y - v1.y * v2.x);
+                a.y * b.z - a.z * b.y,
+                a.x * b.z - a.z * b.x,
+                a.x * b.y - a.y * b.x);
     }
 
     public static double dot(Vector v1, Vector v2) {
