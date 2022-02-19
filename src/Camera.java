@@ -37,10 +37,10 @@ public class Camera extends Entity {
         v = Vector.cross(n, u);
 
         Camera.worldToNodeMatrix = new SimpleMatrix(new double[][] {
-                { u.x, u.y, u.z, -1 * Vector.dot(position, u) },
-                { v.x, v.y, v.z, -1 * Vector.dot(position, v) },
-                { n.x, n.y, n.z, -1 * Vector.dot(position, n) },
-                { 0, 0, 0, 1 }
+                { u.x, v.x, n.x, 0 },
+                { u.y, v.y, n.y, 0 },
+                { u.z, v.z, n.z, 0 },
+                { -1 * Vector.dot(position, u), -1 * Vector.dot(position, v), -1 * Vector.dot(position, n), 1 }
         });
 
         System.out.println(this);
@@ -67,7 +67,6 @@ public class Camera extends Entity {
                 pixel.setValue(0);
             }
             counter++;
-
 
             // 9629770174
             // shoot a ray and check intersection
