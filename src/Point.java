@@ -38,4 +38,8 @@ public class Point {
     public String toString() {
         return "P: {" + this.x + " " + this.y + " " + this.z + "}";
     }
+
+    public Point copy() {
+        return new Point(this);
+    }
 }

@@ -113,6 +113,10 @@ public class Vector {
         return "V: {" + this.x + " " + this.y + " " + this.z + "}";
     }
 
+    public Vector copy() {
+        return new Vector(this);
+    }
+
     //
     // Static Methods
     //
