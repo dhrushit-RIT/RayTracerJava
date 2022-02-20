@@ -37,11 +37,13 @@ public class Application {
         // Point cameraPosition = new Point(0, 0, 5);
         Point cameraPosition = new Point(0, 1.15, 6);
         // Point cameraPosition = new Point(5.5, -0.5, 1);
-        // Vector cameraUp = new Vector(0, 1, 0); // this is wrt camera
-        Vector cameraUp = new Vector(0, 2.15, 6); 
+        // an arbitary up works, it can later be projected to camera to work as its up : https://raytracing.github.io/books/RayTracingInOneWeekend.html#positionablecamera/cameraviewinggeometry
+        // TODO : not sure why but figure it out why
+        Vector cameraUp = new Vector(0, 1, 0); // this is wrt camera. 
+        // Vector cameraUp = new Vector(0, 2.15, 6); 
         // Vector cameraUp = new Vector(0, 0, 1);
         // Vector cameraLookAt = new Vector(0, 0, -1); // this is wrt camera
-        Vector cameraLookAt = new Vector(0, 1.15, 0); 
+        Vector cameraLookAt = new Vector(0, 1.15, 5); 
         // Vector cameraLookAt = new Vector(-1, 0, 0);
         double cameraFocalLength = .5;
 
