@@ -45,7 +45,7 @@ public class Application {
         // Vector cameraLookAt = new Vector(0, 0, -1); // this is wrt camera
         Vector cameraLookAt = new Vector(0, 1.15, 5); 
         // Vector cameraLookAt = new Vector(-1, 0, 0);
-        double cameraFocalLength = .5;
+        double cameraFocalLength = 2.5;
 
         return new Camera(cameraPosition, cameraUp, cameraLookAt, cameraFocalLength);
     }
