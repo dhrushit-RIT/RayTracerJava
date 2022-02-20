@@ -9,7 +9,7 @@ public abstract class Entity {
         this.position = position;
     }
 
-    public abstract boolean intersect(Ray ray);
+    public abstract double intersect(Ray ray);
 
     public boolean intersect(Entity entity) {
         return false;

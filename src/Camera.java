@@ -106,9 +106,9 @@ public class Camera extends Entity {
     }
 
     @Override
-    public boolean intersect(Ray ray) {
+    public double intersect(Ray ray) {
         // TODO Auto-generated method stub
-        return false;
+        return -1;
     }
 
     public String toString() {
