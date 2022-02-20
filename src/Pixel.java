@@ -1,5 +1,5 @@
 public class Pixel {
-    public int value;
+    public MyColor color;
     public int row;
     public int col;
     public static double width;
@@ -18,8 +18,8 @@ public class Pixel {
         this.wPosition = position;
     }
 
-    public void setValue(int value) {
-        this.value = value;
+    public void setValue(MyColor value) {
+        this.color = value;
     }
 
     public void setWidth(float width) {

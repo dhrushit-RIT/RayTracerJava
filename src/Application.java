@@ -19,21 +19,21 @@ public class Application {
     }
 
     private Triangle getDefaultTrainTriangle1() {
-        return new Triangle(null, new Point(1, 0, 1),
+        return new Triangle(new MyColor(255, 0, 0), new Point(1, 0, 1),
                 new Point[] { new Point(1, 0, 1), new Point(-1, 0, 1), new Point(1, 0, -1) });
     }
 
     private Triangle getDefaultTrainTriangle2() {
-        return new Triangle(null, new Point(1, 0, 1),
+        return new Triangle(new MyColor(255, 0, 0), new Point(1, 0, 1),
                 new Point[] { new Point(-1, 0, 1), new Point(1, 0, -1), new Point(-1, 0, -1) });
     }
 
     private Sphere getDefaultSphere2() {
-        return new Sphere(new Point(0.6, 0.8, -0.6), 0.6, null);
+        return new Sphere(new Point(0.6, 0.8, -0.6), 0.6, new MyColor(0, 255, 0));
     }
 
     private Sphere getDefaultSphere1() {
-        return new Sphere(new Point(-0.4, 1, 0.4), 0.755, null);
+        return new Sphere(new Point(-0.4, 1, 0.4), 0.755, new MyColor(0, 0, 255));
 
     }
 

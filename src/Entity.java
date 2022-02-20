@@ -1,10 +1,10 @@
 public abstract class Entity {
 
     BoundingBox boundingBox;
-    protected Color baseColor;
+    protected MyColor baseColor;
     protected Point position;
 
-    public Entity(Color baseColor, Point position) {
+    public Entity(MyColor baseColor, Point position) {
         this.setBaseColor(baseColor);
         this.position = position;
     }
@@ -15,9 +15,9 @@ public abstract class Entity {
         return false;
     }
 
-    protected void setBaseColor(Color baseColor) {
+    protected void setBaseColor(MyColor baseColor) {
         if (baseColor == null) {
-            this.baseColor = new Color(255, 255, 255);
+            this.baseColor = new MyColor(255, 255, 255);
         } else {
             this.baseColor = baseColor;
         }
