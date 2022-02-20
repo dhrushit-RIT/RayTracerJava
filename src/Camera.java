@@ -10,6 +10,8 @@ import javax.imageio.ImageIO;
 
 public class Camera extends Entity {
 
+    public static final MyColor DEFAULT_COLOR = new MyColor(128, 128, 128);
+
     public FilmPlane filmPlane;
     public Vector wUp;
     public Vector wLookAt;
@@ -51,7 +53,6 @@ public class Camera extends Entity {
     }
 
     public void takeASnap() {
-        int counter = 0;
 
         for (Pixel pixel : filmPlane) {
             // get vector
@@ -61,15 +62,13 @@ public class Camera extends Entity {
             Vector dir = new Vector(pixel.wPosition);
             dir.normalize();
             Ray ray = new Ray(this.position, dir);
-            boolean doesIntersect = this.world.checkIntersection(ray);
-            if (doesIntersect) {
-                pixel.setValue(255);
+            Entity nearestEntity = this.world.checkIntersection(ray);
+            if (nearestEntity != null) {
+                pixel.setValue(nearestEntity.baseColor);
             } else {
-                pixel.setValue(0);
+                pixel.setValue(DEFAULT_COLOR);
             }
-            counter++;
 
-            // 9629770174
             // shoot a ray and check intersection
         }
 
@@ -82,7 +81,7 @@ public class Camera extends Entity {
                 BufferedImage.TYPE_3BYTE_BGR);
 
         for (Pixel pixel : filmPlane) {
-            Color color = new Color(pixel.value, pixel.value, pixel.value);
+            Color color = new Color(pixel.color.r, pixel.color.g, pixel.color.b);
             int actualCol = filmPlane.numPixelsWidth - pixel.col - 1;
             rgbImage.setRGB(actualCol, pixel.row, color.getRGB());
         }
