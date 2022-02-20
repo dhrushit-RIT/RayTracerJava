@@ -18,13 +18,13 @@ public class Sphere extends Entity {
 
         Point centerCamSpace = Camera.toCameraSpace(wCenter);
         Point rOriginCamSpace = Camera.toCameraSpace(rOrigin);
-        Vector rDirectionCamSpace = Camera.toCameraSpace(rDirection);
+        // Vector rDirectionCamSpace = Camera.toCameraSpace(rDirection);
 
         // System.out.println(rOriginCamSpace + " " + centerCamSpace);
 
-        double rx = rDirectionCamSpace.xNormalized();
-        double ry = rDirectionCamSpace.yNormalized();
-        double rz = rDirectionCamSpace.zNormalized();
+        double rx = rDirection.xNormalized();
+        double ry = rDirection.yNormalized();
+        double rz = rDirection.zNormalized();
 
         double xDiff = rOriginCamSpace.x - centerCamSpace.x;
         double yDiff = rOriginCamSpace.y - centerCamSpace.y;

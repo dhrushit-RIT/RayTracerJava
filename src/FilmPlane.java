@@ -4,7 +4,7 @@ import java.util.Iterator;
 public class FilmPlane implements Iterable<Pixel> {
     public int height;
     public int width;
-    public Vector wPosition;
+    public Vector cPosition; // position wrt camera
 
     public int numPixelsHeight;
     public int numPixelsWidth;
@@ -15,13 +15,13 @@ public class FilmPlane implements Iterable<Pixel> {
 
         this.width = width;
         this.height = height;
-        this.wPosition = position;
+        this.cPosition = position;
         this.filmPixels = new ArrayList<ArrayList<Pixel>>();
 
         this.numPixelsHeight = numPixelsHeight;
         this.numPixelsWidth = numPixelsWidth;
 
-        Pixel.height =  (double) height / numPixelsHeight;
+        Pixel.height = (double) height / numPixelsHeight;
         Pixel.width = (double) width / numPixelsWidth;
 
         for (int row = 0; row < numPixelsHeight; row++) {
@@ -32,9 +32,9 @@ public class FilmPlane implements Iterable<Pixel> {
                 double pY = -height / 2 + row * Pixel.height + Pixel.height / 2;
 
                 Vector pixelPositionWrtPlane = new Vector(pX, pY, 0);
-                Vector wPixelPos = Vector.add(this.wPosition, pixelPositionWrtPlane);
+                Vector cPixelPos = Vector.add(this.cPosition, pixelPositionWrtPlane);
 
-                pixelRow.add(new Pixel(row, col, wPixelPos));
+                pixelRow.add(new Pixel(row, col, cPixelPos));
             }
             filmPixels.add(pixelRow);
         }
@@ -45,24 +45,26 @@ public class FilmPlane implements Iterable<Pixel> {
     @Override
     public Iterator<Pixel> iterator() {
         return new Iterator<Pixel>() {
+            // public int curRow = numPixelsHeight - 1;
             public int curRow = 0;
             public int curCol = 0;
 
             @Override
             public boolean hasNext() {
-                return curRow < filmPixels.size();
+                // return curRow >= 0;
+                return curRow < numPixelsHeight;
             }
 
             @Override
             public Pixel next() {
                 Pixel ret = filmPixels.get(curRow).get(curCol);
-                
+
                 curCol++;
-                if (curCol >= numPixelsWidth){
+                if (curCol >= numPixelsWidth) {
                     curCol = 0;
                     curRow++;
                 }
-               
+
                 return ret;
             }
 
@@ -73,8 +75,8 @@ public class FilmPlane implements Iterable<Pixel> {
         StringBuilder sb = new StringBuilder();
 
         sb.append("FILM PLANE : \n");
-        sb.append("\tposition " + wPosition + "\n");
-        sb.append("\tposition wrt camera" + Camera.toCameraSpace(wPosition) + "\n");
+        sb.append("\tposition " + cPosition + "\n");
+        sb.append("\tposition wrt camera" + Camera.toCameraSpace(cPosition) + "\n");
 
         return sb.toString();
     }
