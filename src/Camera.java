@@ -80,7 +80,6 @@ public class Camera extends Entity {
         BufferedImage rgbImage = new BufferedImage(filmPlane.numPixelsWidth,
                 filmPlane.numPixelsHeight,
                 BufferedImage.TYPE_3BYTE_BGR);
-        Graphics2D g2d = rgbImage.createGraphics();
 
         for (Pixel pixel : filmPlane) {
             Color color = new Color(pixel.value, pixel.value, pixel.value);
@@ -88,8 +87,9 @@ public class Camera extends Entity {
             rgbImage.setRGB(actualCol, pixel.row, color.getRGB());
         }
         writeImgToFile(rgbImage);
-        g2d.drawImage(rgbImage, 0, 0, Color.GRAY, null);
-        g2d.dispose();
+        // Graphics2D g2d = rgbImage.createGraphics();
+        // g2d.drawImage(rgbImage, 0, 0, Color.GRAY, null);
+        // g2d.dispose();
 
         return rgbImage;
     }
