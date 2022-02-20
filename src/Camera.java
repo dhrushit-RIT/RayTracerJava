@@ -28,7 +28,7 @@ public class Camera extends Entity {
         this.wUp = up;
         this.wLookAt = lookAt;
         this.focalLength = focalLength;
-        this.filmPlane = new FilmPlane(8, 5, 400, 250, Vector.scale(lookAt, focalLength));
+        this.filmPlane = new FilmPlane(10, 10, 400, 400, Vector.scale(lookAt, focalLength));
 
         n = Vector.subtract(position, lookAt);
         n.normalize();
