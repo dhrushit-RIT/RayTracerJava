@@ -25,13 +25,29 @@ public class World {
         this.camera.setWorld(this);
     }
 
-    public boolean checkIntersection(Ray ray) {
+    /**
+     * check if any of the object is intersecting
+     * 
+     * @param ray
+     * @return Entity that intersects the first with the ray
+     */
+    public Entity checkIntersection(Ray ray) {
+        Entity nearestEntity;
+        double nearestDistance = -1;
         for (Entity entity : worldObjects) {
-            if (entity.intersect(ray)) {
-                return true;
+            double dist = entity.intersect(ray)
+            if (dist > 0) {
+                if (dist < nearestDistance){
+                    nearestEntity = entity;
+                    nearestDistance = dist;
+                }
             }
         }
-        return false;
+
+        if (nearestDistance > 0) {
+            return nearestEntity;
+        }
+        return null;
     }
 
 }
