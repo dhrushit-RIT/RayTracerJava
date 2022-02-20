@@ -70,9 +70,11 @@ public class Vector {
         if (matrix.numCols() == 1 && matrix.numRows() >= 3) {
             // TODO : might need to add fourth dimension to matrix and use x/w, y/w and z/w
             // instead of x,y,y
-            return new Vector(matrix.get(0, 0), matrix.get(1, 0), matrix.get(2, 0));
+            return new Vector(matrix.get(0, 0) / matrix.get(3, 0), matrix.get(1, 0) / matrix.get(3, 0),
+                    matrix.get(2, 0) / matrix.get(3, 0));
         } else if (matrix.numRows() == 1 && matrix.numCols() >= 3) {
-            return new Vector(matrix.get(0, 0), matrix.get(0, 1), matrix.get(0, 2));
+            return new Vector(matrix.get(0, 0) / matrix.get(0, 3), matrix.get(0, 1) / matrix.get(0, 3),
+                    matrix.get(0, 2) / matrix.get(0, 3));
         } else {
             System.out.println("Not a valid matrix to create a vector");
             return null;
@@ -153,8 +155,9 @@ public class Vector {
 
     public static Vector cross(Vector a, Vector b) {
         return new Vector(
+                // 0,0,1 x 1,0,0
                 a.y * b.z - a.z * b.y,
-                a.x * b.z - a.z * b.x,
+                a.z * b.x - a.x * b.z,
                 a.x * b.y - a.y * b.x);
     }
 
