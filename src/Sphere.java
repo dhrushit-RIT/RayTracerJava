@@ -6,13 +6,13 @@ public class Sphere extends Entity {
 
     private double radius;
 
-    public Sphere(Point wCenter, double radius, Color baseColor) {
+    public Sphere(Point wCenter, double radius, MyColor baseColor) {
         super(baseColor, new Point(wCenter));
         this.wCenter = wCenter;
         this.radius = radius;
     }
 
-    public boolean intersect(Ray ray) {
+    public double intersect(Ray ray) {
         Vector rDirection = ray.getDirection();
         Point rOrigin = ray.getOrigin();
 
@@ -40,11 +40,14 @@ public class Sphere extends Entity {
         // System.out.println(D);
 
         if (D < 0) { // no roots
-            return false;
+            return -1;
         } else if (D > 0) { // two roots
-            return true;
+            double w0 = (-B + D) / 2 / A;
+            double w1 = (-B - D) / 2 / A;
+            double w = Math.min(w0, w1);
+            return w;
         } else {
-            return true;
+            return -1;
         }
     }
 }

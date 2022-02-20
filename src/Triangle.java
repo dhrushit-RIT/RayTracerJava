@@ -11,7 +11,7 @@ public class Triangle extends Entity {
     private Vector P;
     private Vector Q;
 
-    public Triangle(Color baseColor, Point position, Point[] verticePoints) {
+    public Triangle(MyColor baseColor, Point position, Point[] verticePoints) {
         super(baseColor, position);
         this.wPosition = position;
         this.verticePoints = verticePoints;
@@ -21,7 +21,7 @@ public class Triangle extends Entity {
     }
 
     @Override
-    public boolean intersect(Ray ray) {
+    public double intersect(Ray ray) {
 
         if (this.T == null) {
             this.T = Util.subtract(ray.origin, Camera.toCameraSpace(verticePoints[0]));
@@ -33,25 +33,25 @@ public class Triangle extends Entity {
         double Pe1 = Util.dot(P, e1);
 
         if (Pe1 == 0) {
-            return false;
+            return -1;
         }
-        SimpleMatrix wuv = new SimpleMatrix(new double[][]{
-                {Util.dot(Q, e1)},
-                {Util.dot(P, T)},
-                {Util.dot(Q, ray.direction)}})
-                .divide(Pe1);
+        SimpleMatrix wuv = new SimpleMatrix(new double[][] {
+                { Util.dot(Q, e1) },
+                { Util.dot(P, T) },
+                { Util.dot(Q, ray.direction) } })
+                        .divide(Pe1);
 
         double w = wuv.get(0, 0);
         double u = wuv.get(1, 0);
         double v = wuv.get(2, 0);
 
         if (w < 0) {
-            return false;
+            return -1;
         } else if (u < 0 || v < 0 || u + v > 1) {
-            return false;
+            return -1;
         }
 
-        return true;
+        return w;
     }
 
 }
