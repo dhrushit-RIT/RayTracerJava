@@ -40,7 +40,7 @@ public class Camera extends Entity {
                 { u.x, v.x, n.x, 0 },
                 { u.y, v.y, n.y, 0 },
                 { u.z, v.z, n.z, 0 },
-                { -1 * Vector.dot(position, u), -1 * Vector.dot(position, v), -1 * Vector.dot(position, n), 1 }
+                { -1.0 * Vector.dot(position, u), -1.0 * Vector.dot(position, v), -1.0 * Vector.dot(position, n), 1 }
         });
 
         System.out.println(this);
@@ -113,8 +113,8 @@ public class Camera extends Entity {
         StringBuilder sb = new StringBuilder();
         Vector upCam = toCameraSpace(wUp);
         Vector lookAtCam = toCameraSpace(wLookAt);
-        // upCam.normalize();
-        // lookAtCam.normalize();
+        upCam.normalize();
+        lookAtCam.normalize();
 
         sb.append("CAMERA : \n");
         sb.append("\tposition " + position + "\n");
@@ -125,6 +125,8 @@ public class Camera extends Entity {
         sb.append("\tv " + v + "\n");
         sb.append("\tupCam " + upCam + "\n");
         sb.append("\tlookatCam " + lookAtCam + "\n");
+        sb.append("\tviewmatrix " + worldToNodeMatrix + "\n");
+
 
         return sb.toString();
     }
@@ -137,8 +139,8 @@ public class Camera extends Entity {
         return Vector.getVectorFromMatrix(Camera.worldToNodeMatrix.copy().mult(v.matrix));
     }
 
-    public static Point toCameraSpace(Point v) {
-        return Point.getPointFromMatrix(Camera.worldToNodeMatrix.copy().mult(v.matrix));
+    public static Point toCameraSpace(Point p) {
+        return Point.getPointFromMatrix(Camera.worldToNodeMatrix.copy().mult(p.matrix));
     }
 
 }
