@@ -28,7 +28,7 @@ public class Camera extends Entity {
         this.wUp = up;
         this.wLookAt = lookAt;
         this.focalLength = focalLength;
-        this.filmPlane = new FilmPlane(8, 5, 400, 250, Vector.add(position, Vector.scale(lookAt, focalLength)));
+        this.filmPlane = new FilmPlane(8, 5, 400, 250, Vector.scale(lookAt, focalLength));
 
         n = Vector.subtract(position, lookAt);
         n.normalize();
@@ -56,8 +56,9 @@ public class Camera extends Entity {
         for (Pixel pixel : filmPlane) {
             // get vector
             // convert to camera space
-            Vector dir = toCameraSpace(pixel.wPosition);
+            // Vector dir = toCameraSpace(pixel.wPosition);
             // System.out.println(pixel);
+            Vector dir = new Vector(pixel.wPosition);
             dir.normalize();
             Ray ray = new Ray(this.position, dir);
             boolean doesIntersect = this.world.checkIntersection(ray);
@@ -83,7 +84,8 @@ public class Camera extends Entity {
 
         for (Pixel pixel : filmPlane) {
             Color color = new Color(pixel.value, pixel.value, pixel.value);
-            rgbImage.setRGB(pixel.col, pixel.row, color.getRGB());
+            int actualCol = filmPlane.numPixelsWidth - pixel.col - 1;
+            rgbImage.setRGB(actualCol, pixel.row, color.getRGB());
         }
         writeImgToFile(rgbImage);
         g2d.drawImage(rgbImage, 0, 0, Color.GRAY, null);
@@ -126,7 +128,6 @@ public class Camera extends Entity {
         sb.append("\tupCam " + upCam + "\n");
         sb.append("\tlookatCam " + lookAtCam + "\n");
         sb.append("\tviewmatrix " + worldToNodeMatrix + "\n");
-
 
         return sb.toString();
     }
