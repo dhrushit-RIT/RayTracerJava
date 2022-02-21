@@ -6,7 +6,7 @@ public class Sphere extends Entity {
 
     private double radius;
 
-    public Sphere(Point wCenter, double radius, Color baseColor) {
+    public Sphere(Point wCenter, double radius, MyColor baseColor) {
         super(baseColor, new Point(wCenter));
         this.wCenter = wCenter;
         this.radius = radius;
