@@ -18,9 +18,9 @@ public class Sphere extends Entity {
 
         Point centerCamSpace = Camera.toCameraSpace(wCenter);
         Point rOriginCamSpace = Camera.toCameraSpace(rOrigin);
-        // Vector rDirectionCamSpace = Camera.toCameraSpace(rDirection);
+         Vector rDirectionCamSpace = Camera.toCameraSpace(rDirection);
 
-        // System.out.println(rOriginCamSpace + " " + centerCamSpace);
+//         System.out.println(rOriginCamSpace + " " + centerCamSpace);
 
         double rx = rDirection.xNormalized();
         double ry = rDirection.yNormalized();
@@ -42,10 +42,18 @@ public class Sphere extends Entity {
         if (D < 0) { // no roots
             return -1;
         } else if (D > 0) { // two roots
+            D = Math.sqrt(D);
             double w0 = (-B + D) / 2 / A;
             double w1 = (-B - D) / 2 / A;
-            double w = Math.min(w0, w1);
-            return w;
+            // System.out.println(w0 + " " + w1);
+            if (w0 > 0 && w1 > 0)
+                return Math.min(w0, w1);
+            else if (w0 > 0)
+                return w0;
+            else if (w1 > 0)
+                return w1;
+            else
+                return -1;
         } else {
             return -1;
         }

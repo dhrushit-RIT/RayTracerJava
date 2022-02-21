@@ -32,10 +32,10 @@ public class World {
      * @return Entity that intersects the first with the ray
      */
     public Entity checkIntersection(Ray ray) {
-        Entity nearestEntity;
+        Entity nearestEntity = null;
         double nearestDistance = -1;
         for (Entity entity : worldObjects) {
-            double dist = entity.intersect(ray)
+            double dist = entity.intersect(ray);
             if (dist > 0) {
                 if (dist < nearestDistance){
                     nearestEntity = entity;
