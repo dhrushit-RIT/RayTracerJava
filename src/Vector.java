@@ -68,8 +68,6 @@ public class Vector {
 
     public static Vector getVectorFromMatrix(SimpleMatrix matrix) {
         if (matrix.numCols() == 1 && matrix.numRows() >= 3) {
-            // TODO : might need to add fourth dimension to matrix and use x/w, y/w and z/w
-            // instead of x,y,y
             return new Vector(matrix.get(0, 0) / matrix.get(3, 0), matrix.get(1, 0) / matrix.get(3, 0),
                     matrix.get(2, 0) / matrix.get(3, 0));
         } else if (matrix.numRows() == 1 && matrix.numCols() >= 3) {
