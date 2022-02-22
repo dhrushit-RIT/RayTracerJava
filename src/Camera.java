@@ -30,13 +30,17 @@ public class Camera extends Entity {
         this.wUp = up;
         this.wLookAt = lookAt;
         this.focalLength = focalLength;
-        this.filmPlane = new FilmPlane(10, 10, 400, 400, Vector.scale(lookAt, focalLength));
+        // this.wLookAt.normalize();
 
+        // n = Vector.subtract(lookAt, position);
         n = Vector.subtract(position, lookAt);
         n.normalize();
         u = Vector.cross(up, n);
         u.normalize();
         v = Vector.cross(n, u);
+
+        this.filmPlane = new FilmPlane(10, 10, 400, 400, Vector.scale(n, -1 * focalLength)); // -1 to make it direct in
+                                                                                             // opposite direction
 
         Camera.worldToNodeMatrix = new SimpleMatrix(new double[][] {
                 { u.x, v.x, n.x, 0 },
@@ -82,8 +86,8 @@ public class Camera extends Entity {
 
         for (Pixel pixel : filmPlane) {
             Color color = new Color(pixel.color.r, pixel.color.g, pixel.color.b);
-            int actualCol = filmPlane.numPixelsWidth - pixel.col - 1;
-            rgbImage.setRGB(actualCol, pixel.row, color.getRGB());
+            int actualRow = filmPlane.numPixelsHeight - pixel.row - 1;
+            rgbImage.setRGB(pixel.col, actualRow, color.getRGB());
         }
         writeImgToFile(rgbImage);
         // Graphics2D g2d = rgbImage.createGraphics();
