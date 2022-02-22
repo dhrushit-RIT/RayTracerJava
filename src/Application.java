@@ -13,7 +13,6 @@ public class Application {
         Setups.setup1(this);
     }
 
-
     public void start() {
         this.world.simulate();
     }
