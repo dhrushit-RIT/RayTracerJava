@@ -39,7 +39,7 @@ public class Camera extends Entity {
         u.normalize();
         v = Vector.cross(n, u);
 
-        this.filmPlane = new FilmPlane(10, 10, 400, 400, Vector.scale(n, -1 * focalLength)); // -1 to make it direct in
+        this.filmPlane = new FilmPlane(16, 10, 640, 400, Vector.scale(n, -1 * this.focalLength)); // -1 to make it direct in
                                                                                              // opposite direction
 
         Camera.worldToNodeMatrix = new SimpleMatrix(new double[][] {
