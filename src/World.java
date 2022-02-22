@@ -33,7 +33,7 @@ public class World {
      */
     public Entity checkIntersection(Ray ray) {
         Entity nearestEntity = null;
-        double nearestDistance = -1;
+        double nearestDistance = 100000000;
         for (Entity entity : worldObjects) {
             double dist = entity.intersect(ray);
             if (dist > 0) {
