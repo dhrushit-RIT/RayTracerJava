@@ -9,8 +9,8 @@ public class Application {
 
     public Application() {
         this.world = new World();
-        Setups.setup0(this);
-        // Setups.setup1(this);
+        // Setups.setup0(this);
+        Setups.setup1(this);
     }
 
 
