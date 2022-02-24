@@ -5,11 +5,28 @@ public class Point {
     public double y;
     public double z;
     public SimpleMatrix matrix;
+    public Space space ;
+
+    public enum Space {
+        WORLD,
+        CAMERA,
+        OTHER_ENTITY
+    }
 
     public Point(Point other) {
         this.x = other.x;
         this.y = other.y;
         this.z = other.z;
+        this.space = Space.WORLD;
+
+        this.matrix = new SimpleMatrix(other.matrix);
+    }
+
+    public Point(Point other, Space space) {
+        this.x = other.x;
+        this.y = other.y;
+        this.z = other.z;
+        this.space = space;
 
         this.matrix = new SimpleMatrix(other.matrix);
     }
@@ -18,6 +35,16 @@ public class Point {
         this.x = x;
         this.y = y;
         this.z = z;
+        this.space = Space.WORLD;
+
+        this.matrix = new SimpleMatrix(new double[][] { { x }, { y }, { z }, { 1.0 } });
+    }
+
+    public Point(double x, double y, double z, Space space) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.space = space;
 
         this.matrix = new SimpleMatrix(new double[][] { { x }, { y }, { z }, { 1.0 } });
     }
