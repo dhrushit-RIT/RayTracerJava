@@ -67,6 +67,11 @@ public class Camera extends Entity {
             dir.normalize();
             Ray ray = new Ray(this.position, dir);
             Entity nearestEntity = this.world.checkIntersection(ray);
+
+            if(nearestEntity != null) {
+
+            }
+
             if (nearestEntity != null) {
                 pixel.setValue(nearestEntity.baseColor);
             } else {
@@ -109,9 +114,9 @@ public class Camera extends Entity {
     }
 
     @Override
-    public double intersect(Ray ray) {
+    public IntersectionDetails intersect(Ray ray) {
         // TODO Auto-generated method stub
-        return -1;
+        return new IntersectionDetails();
     }
 
     public String toString() {

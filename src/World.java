@@ -34,20 +34,23 @@ public class World {
     public Entity checkIntersection(Ray ray) {
         Entity nearestEntity = null;
         double nearestDistance = 100000000;
+        IntersectionDetails bestIntersection = new IntersectionDetails(100000000);
         for (Entity entity : worldObjects) {
-            double dist = entity.intersect(ray);
-            if (dist > 0) {
-                if (dist < nearestDistance){
+            IntersectionDetails intersection = entity.intersect(ray);
+            if (intersection.distance > 0) {
+                if (intersection.distance < nearestDistance) {
                     nearestEntity = entity;
-                    nearestDistance = dist;
+                    nearestDistance = intersection.distance;
+                    bestIntersection = intersection;
                 }
             }
         }
 
         if (nearestDistance > 0) {
             return nearestEntity;
+        } else {
+            return null;
         }
-        return null;
     }
 
 }

@@ -20,7 +20,7 @@ public class Sphere extends Entity {
      * ¤ (xn, yn, zn) = (xi, yi, zi) - (xc, yc, zc)
      * ¤ = ((xi – xc), (yi – yc), (zi – zc))
      */
-    public double intersect(Ray ray) {
+    public IntersectionDetails intersect(Ray ray) {
         Vector rDirection = ray.getDirection();
         Point rOrigin = ray.getOrigin();
 
@@ -44,26 +44,41 @@ public class Sphere extends Entity {
 
         double D = B * B - 4 * A * C;
 
-        // System.out.println("B: " + B + "\nB * B : " + B * B + "\nC : " + C);
-        // System.out.println(D);
-
+        IntersectionDetails intersection = new IntersectionDetails();
+        double w = -1;
         if (D < 0) { // no roots
-            return -1;
+            w = -1;
         } else if (D > 0) { // two roots
             D = Math.sqrt(D);
             double w0 = (-B + D) / 2 / A;
             double w1 = (-B - D) / 2 / A;
             // System.out.println(w0 + " " + w1);
             if (w0 > 0 && w1 > 0)
-                return Math.min(w0, w1);
+                w = Math.min(w0, w1);
             else if (w0 > 0)
-                return w0;
+                w = w0;
             else if (w1 > 0)
-                return w1;
+                w = w1;
             else
-                return -1;
+                w = -1;
         } else {
-            return -1;
+            w = -1;
         }
+
+        if(w >= 0) {
+            intersection.distance = w;
+            intersection.intersectionPoint = new Point(
+                rOriginCamSpace.x + rDirectionCamSpace.x * w,
+                rOriginCamSpace.y + rDirectionCamSpace.y * w,
+                rOriginCamSpace.z + rDirectionCamSpace.z * w
+            );
+
+            intersection.normalAtIntersection = new Vector(
+                intersection.intersectionPoint.x - centerCamSpace.x,
+                intersection.intersectionPoint.y - centerCamSpace.y,
+                intersection.intersectionPoint.z - centerCamSpace.z
+            );
+        }
+        return intersection;
     }
 }

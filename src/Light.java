@@ -8,8 +8,8 @@ public class Light extends Entity {
     }
 
     @Override
-    public double intersect(Ray ray) {
-        return -1;
+    public IntersectionDetails intersect(Ray ray) {
+        return new IntersectionDetails();
     }
 
 }

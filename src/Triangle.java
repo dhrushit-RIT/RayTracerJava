@@ -27,7 +27,7 @@ public class Triangle extends Entity {
      * 
      */
     @Override
-    public double intersect(Ray ray) {
+    public IntersectionDetails intersect(Ray ray) {
 
         if (this.T == null) {
             this.T = Util.subtract(ray.origin, verticePoints[0]/* Camera.toCameraSpace(verticePoints[0]) */);
@@ -35,11 +35,11 @@ public class Triangle extends Entity {
         }
 
         Vector P = Util.cross(ray.direction, e2);
-
+        IntersectionDetails intersection = new IntersectionDetails();
         double Pe1 = Util.dot(P, e1);
 
         if (Pe1 == 0) {
-            return -1;
+            intersection.distance = -1;
         }
 
         SimpleMatrix wuv = new SimpleMatrix(new double[][] {
@@ -53,12 +53,13 @@ public class Triangle extends Entity {
         double v = wuv.get(2, 0);
 
         if (w < 0) {
-            return -1;
+            w = -1;
         } else if (u < 0 || v < 0 || u + v > 1) {
-            return -1;
+            w = -1;
         }
 
-        return w;
+        intersection.distance = w;
+        return intersection;
     }
 
 }
