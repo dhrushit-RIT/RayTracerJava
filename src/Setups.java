@@ -23,11 +23,20 @@ public class Setups {
         // an arbitary up works, it can later be projected to camera to work as its up :
         // https://raytracing.github.io/books/RayTracingInOneWeekend.html#positionablecamera/cameraviewinggeometry
         // TODO : not sure why but figure it out why
+
+        //
+        // setup camera
+        //
         Point cameraPosition = new Point(0, 1.15, 3);
         Vector cameraUp = new Vector(0, 1, 0); // this is wrt camera.
         Vector cameraLookAt = new Vector(0, 1.15, 0);
         double cameraFocalLength = 8;
         Camera camera = new Camera(cameraPosition, cameraUp, cameraLookAt, cameraFocalLength);
+
+        //
+        // setup light
+        //
+        Light light = new Light(new MyColor(1, 1, 1), new Point(3.55478, -1.14761, 4.30175));
 
         application.getWorld().addEntity(new Sphere(new Point(-0.4, 1, 0.4), 0.755, new MyColor(0, 0, 255)));
         application.getWorld().addEntity(new Sphere(new Point(0.6, 0.8, -0.6), 0.6, new MyColor(0, 255, 0)));
@@ -35,6 +44,7 @@ public class Setups {
                 new Point[] { new Point(1, 0, 1), new Point(-1, 0, 1), new Point(1, 0, -1) }));
         application.getWorld().addEntity(new Triangle(new MyColor(255, 0, 0), new Point(1, 0, 1),
                 new Point[] { new Point(-1, 0, 1), new Point(1, 0, -1), new Point(-1, 0, -1) }));
+        application.getWorld().addEntity(light);
         application.getWorld().setCamera(camera);
     }
 }
