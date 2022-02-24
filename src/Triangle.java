@@ -20,11 +20,17 @@ public class Triangle extends Entity {
         this.e2 = Util.subtract(verticePoints[2], verticePoints[0]);
     }
 
+    /**
+     * u,v will give barycentric coords of intersection point
+     * ⍵ will be distance along ray of intersection point
+     * e1 x e2 will give you the normal.
+     * 
+     */
     @Override
     public double intersect(Ray ray) {
 
         if (this.T == null) {
-            this.T = Util.subtract(ray.origin, verticePoints[0]/*Camera.toCameraSpace(verticePoints[0])*/);
+            this.T = Util.subtract(ray.origin, verticePoints[0]/* Camera.toCameraSpace(verticePoints[0]) */);
             this.Q = Util.cross(T, e1);
         }
 
@@ -35,7 +41,7 @@ public class Triangle extends Entity {
         if (Pe1 == 0) {
             return -1;
         }
-        
+
         SimpleMatrix wuv = new SimpleMatrix(new double[][] {
                 { Util.dot(Q, e2) },
                 { Util.dot(P, T) },

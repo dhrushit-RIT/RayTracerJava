@@ -12,15 +12,23 @@ public class Sphere extends Entity {
         this.radius = radius;
     }
 
+    /**
+     * point of intersection:
+     * ¤ (xi, yi, zi) = (x0 + dx * wi , y0 + dy * wi , z0 + dz * wi )
+     * 
+     * normal at the point of intersection
+     * ¤ (xn, yn, zn) = (xi, yi, zi) - (xc, yc, zc)
+     * ¤ = ((xi – xc), (yi – yc), (zi – zc))
+     */
     public double intersect(Ray ray) {
         Vector rDirection = ray.getDirection();
         Point rOrigin = ray.getOrigin();
 
         Point centerCamSpace = Camera.toCameraSpace(wCenter);
         Point rOriginCamSpace = Camera.toCameraSpace(rOrigin);
-         Vector rDirectionCamSpace = Camera.toCameraSpace(rDirection);
+        Vector rDirectionCamSpace = Camera.toCameraSpace(rDirection);
 
-//         System.out.println(rOriginCamSpace + " " + centerCamSpace);
+        // System.out.println(rOriginCamSpace + " " + centerCamSpace);
 
         double rx = rDirection.xNormalized();
         double ry = rDirection.yNormalized();
