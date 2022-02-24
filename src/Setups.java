@@ -44,7 +44,9 @@ public class Setups {
                 new Point[] { new Point(1, 0, 1), new Point(-1, 0, 1), new Point(1, 0, -1) }));
         application.getWorld().addEntity(new Triangle(new MyColor(255, 0, 0), new Point(1, 0, 1),
                 new Point[] { new Point(-1, 0, 1), new Point(1, 0, -1), new Point(-1, 0, -1) }));
-        application.getWorld().addEntity(light);
+
+        application.getWorld().addLightSource(light);
+
         application.getWorld().setCamera(camera);
     }
 }
