@@ -22,4 +22,8 @@ public abstract class Entity {
             this.baseColor = baseColor;
         }
     }
+
+    // public MyColor getPixelIrradiance(Light light, Camera camera, Point intersection, Vector Normal){
+        
+    // }
 }
