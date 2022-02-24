@@ -9,7 +9,7 @@ public class Light extends Entity {
 
     @Override
     public IntersectionDetails intersect(Ray ray) {
-        return new IntersectionDetails();
+        return new IntersectionDetails(this);
     }
 
 }

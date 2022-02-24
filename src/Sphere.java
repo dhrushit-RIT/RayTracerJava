@@ -2,7 +2,6 @@
 public class Sphere extends Entity {
 
     private Point wCenter;
-    private Point nCenter;
 
     private double radius;
 
@@ -44,7 +43,7 @@ public class Sphere extends Entity {
 
         double D = B * B - 4 * A * C;
 
-        IntersectionDetails intersection = new IntersectionDetails();
+        IntersectionDetails intersection = new IntersectionDetails(this);
         double w = -1;
         if (D < 0) { // no roots
             w = -1;
@@ -81,4 +80,12 @@ public class Sphere extends Entity {
         }
         return intersection;
     }
+
+    @Override
+    public MyColor getPixelIrradiance(Light light, Camera camera, Point intersection, Vector normal) {
+        
+        return null;
+    }
+
+
 }

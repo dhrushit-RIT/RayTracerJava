@@ -35,7 +35,7 @@ public class Triangle extends Entity {
         }
 
         Vector P = Util.cross(ray.direction, e2);
-        IntersectionDetails intersection = new IntersectionDetails();
+        IntersectionDetails intersection = new IntersectionDetails(this);
         double Pe1 = Util.dot(P, e1);
 
         if (Pe1 == 0) {
