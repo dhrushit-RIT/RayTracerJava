@@ -17,19 +17,19 @@ public class Point {
         this.x = other.x;
         this.y = other.y;
         this.z = other.z;
-        this.space = Space.WORLD;
+        this.space = other.space;
 
         this.matrix = new SimpleMatrix(other.matrix);
     }
 
-    public Point(Point other, Space space) {
-        this.x = other.x;
-        this.y = other.y;
-        this.z = other.z;
-        this.space = space;
+    // public Point(Point other, Space space) {
+    //     this.x = other.x;
+    //     this.y = other.y;
+    //     this.z = other.z;
+    //     this.space = space;
 
-        this.matrix = new SimpleMatrix(other.matrix);
-    }
+    //     this.matrix = new SimpleMatrix(other.matrix);
+    // }
 
     public Point(double x, double y, double z) {
         this.x = x;
