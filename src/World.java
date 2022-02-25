@@ -32,10 +32,23 @@ public class World {
     }
 
     public MyColor getPixelIrradiance(Ray ray) {
+        MyColor finalColor =  new MyColor(0, 0, 0);
+        boolean didGetIlluminated = false;
         IntersectionDetails entityIntersectionDetails = this.checkIntersection(ray);
         for (Light light : lightSources) {
             MyColor color  = entityIntersectionDetails.entity.getPixelIrradiance(light, this.camera, entityIntersectionDetails.intersectionPoint, entityIntersectionDetails.normalAtIntersection);
             
+            // generate a shadow ray from the point of intersection to the light source
+            // if the ray intersects any of the other entity then continue
+            // if the ray does not intersect any other entity then do the phong and get the irradiance value from object
+            // set the didGetIlluminated to true
+
+        }
+
+        if (didGetIlluminated){
+            return finalColor;
+        }else{
+            return Camera.DEFAULT_COLOR;
         }
 
     }
