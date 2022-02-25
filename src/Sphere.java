@@ -1,4 +1,3 @@
-
 public class Sphere extends Entity {
 
     private Point wCenter;
@@ -69,7 +68,8 @@ public class Sphere extends Entity {
             intersection.intersectionPoint = new Point(
                 rOriginCamSpace.x + rDirectionCamSpace.x * w,
                 rOriginCamSpace.y + rDirectionCamSpace.y * w,
-                rOriginCamSpace.z + rDirectionCamSpace.z * w
+                rOriginCamSpace.z + rDirectionCamSpace.z * w,
+                Point.Space.CAMERA
             );
 
             intersection.normalAtIntersection = new Vector(
@@ -81,11 +81,11 @@ public class Sphere extends Entity {
         return intersection;
     }
 
-    @Override
-    public MyColor getPixelIrradiance(Light light, Camera camera, Point intersection, Vector normal) {
+    // @Override
+    // public MyColor getPixelIrradiance(Light light, Camera camera, Point intersection, Vector normal) {
         
-        return null;
-    }
+    //     return null;
+    // }
 
 
 }

@@ -53,9 +53,9 @@ public class Point {
         if (matrix.numCols() == 1 && matrix.numRows() >= 3) {
             // TODO : might need to add fourth dimension to matrix and use x/w, y/w and z/w
             // instead of x,y,y
-            return new Point(matrix.get(0, 0), matrix.get(1, 0), matrix.get(2, 0));
+            return new Point(matrix.get(0, 0), matrix.get(1, 0), matrix.get(2, 0), Space.WORLD);
         } else if (matrix.numRows() == 1 && matrix.numCols() >= 3) {
-            return new Point(matrix.get(0, 0), matrix.get(0, 1), matrix.get(0, 2));
+            return new Point(matrix.get(0, 0), matrix.get(0, 1), matrix.get(0, 2), Space.WORLD);
         } else {
             System.out.println("Not a valid matrix to create a vector");
             return null;

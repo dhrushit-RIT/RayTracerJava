@@ -5,13 +5,13 @@ public class Setups {
         //
         // set up Camera
         //
-        Point cameraPosition = new Point(0, 0, 0);
+        Point cameraPosition = new Point(0, 0, 0, Point.Space.WORLD);
         Vector cameraUp = new Vector(0, 1, 0);
         Vector cameraLookAt = new Vector(0, 0, 1);
         double cameraFocalLength = 1.5;
         Camera camera = new Camera(cameraPosition, cameraUp, cameraLookAt, cameraFocalLength);
 
-        Point sphereCenter = new Point(0, 0, -3);
+        Point sphereCenter = new Point(0, 0, -3, Point.Space.WORLD);
         double sphereRadius = 1.0;
         MyColor sphereColor = new MyColor(0, 0, 255);
         application.getWorld().addEntity(new Sphere(sphereCenter, sphereRadius, sphereColor));
@@ -27,7 +27,7 @@ public class Setups {
         //
         // setup camera
         //
-        Point cameraPosition = new Point(0, 1.15, 3);
+        Point cameraPosition = new Point(0, 1.15, 3, Point.Space.WORLD);
         Vector cameraUp = new Vector(0, 1, 0); // this is wrt camera.
         Vector cameraLookAt = new Vector(0, 1.15, 0);
         double cameraFocalLength = 8;
@@ -36,14 +36,14 @@ public class Setups {
         //
         // setup light
         //
-        Light light = new Light(new MyColor(1, 1, 1), new Point(3.55478, -1.14761, 4.30175));
+        Light light = new Light(new MyColor(1, 1, 1), new Point(3.55478, -1.14761, 4.30175, Point.Space.WORLD));
 
-        application.getWorld().addEntity(new Sphere(new Point(-0.4, 1, 0.4), 0.755, new MyColor(0, 0, 255)));
-        application.getWorld().addEntity(new Sphere(new Point(0.6, 0.8, -0.6), 0.6, new MyColor(0, 255, 0)));
-        application.getWorld().addEntity(new Triangle(new MyColor(255, 0, 0), new Point(1, 0, 1),
-                new Point[] { new Point(1, 0, 1), new Point(-1, 0, 1), new Point(1, 0, -1) }));
-        application.getWorld().addEntity(new Triangle(new MyColor(255, 0, 0), new Point(1, 0, 1),
-                new Point[] { new Point(-1, 0, 1), new Point(1, 0, -1), new Point(-1, 0, -1) }));
+        application.getWorld().addEntity(new Sphere(new Point(-0.4, 1, 0.4, Point.Space.WORLD), 0.755, new MyColor(0, 0, 255)));
+        application.getWorld().addEntity(new Sphere(new Point(0.6, 0.8, -0.6, Point.Space.WORLD), 0.6, new MyColor(0, 255, 0)));
+        application.getWorld().addEntity(new Triangle(new MyColor(255, 0, 0), new Point(1, 0, 1, Point.Space.WORLD),
+                new Point[] { new Point(1, 0, 1, Point.Space.WORLD), new Point(-1, 0, 1, Point.Space.WORLD), new Point(1, 0, -1, Point.Space.WORLD) }));
+        application.getWorld().addEntity(new Triangle(new MyColor(255, 0, 0), new Point(1, 0, 1, Point.Space.WORLD),
+                new Point[] { new Point(-1, 0, 1, Point.Space.WORLD), new Point(1, 0, -1, Point.Space.WORLD), new Point(-1, 0, -1, Point.Space.WORLD) }));
 
         application.getWorld().addLightSource(light);
 
