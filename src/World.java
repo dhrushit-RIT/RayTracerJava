@@ -36,7 +36,9 @@ public class World {
         boolean didGetIlluminated = false;
         IntersectionDetails entityIntersectionDetails = this.checkIntersection(ray);
         for (Light light : lightSources) {
-            MyColor color  = entityIntersectionDetails.entity.getPixelIrradiance(light, this.camera, entityIntersectionDetails.intersectionPoint, entityIntersectionDetails.normalAtIntersection);
+            Ray shadowRay =  new Ray(entityIntersectionDetails.intersectionPoint, Util.subtract(light.position, entityIntersectionDetails.intersectionPoint));
+            
+            // MyColor color  = entityIntersectionDetails.entity.getPixelIrradiance(light, this.camera, entityIntersectionDetails.intersectionPoint, entityIntersectionDetails.normalAtIntersection);
             
             // generate a shadow ray from the point of intersection to the light source
             // if the ray intersects any of the other entity then continue
