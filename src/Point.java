@@ -31,14 +31,14 @@ public class Point {
     //     this.matrix = new SimpleMatrix(other.matrix);
     // }
 
-    public Point(double x, double y, double z) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        this.space = Space.WORLD;
+    // public Point(double x, double y, double z) {
+    //     this.x = x;
+    //     this.y = y;
+    //     this.z = z;
+    //     this.space = Space.WORLD;
 
-        this.matrix = new SimpleMatrix(new double[][] { { x }, { y }, { z }, { 1.0 } });
-    }
+    //     this.matrix = new SimpleMatrix(new double[][] { { x }, { y }, { z }, { 1.0 } });
+    // }
 
     public Point(double x, double y, double z, Space space) {
         this.x = x;
