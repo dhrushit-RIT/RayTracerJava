@@ -146,7 +146,9 @@ public class Camera extends Entity {
     }
 
     public static Point toCameraSpace(Point p) {
-        return Point.getPointFromMatrix(Camera.worldToNodeMatrix.copy().mult(p.matrix));
+        Point point = Point.getPointFromMatrix(Camera.worldToNodeMatrix.copy().mult(p.matrix));
+        point.space = Point.Space.CAMERA;
+        return point;
     }
 
 }
