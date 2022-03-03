@@ -1,18 +1,22 @@
-
 public class Application {
-
-    private final World world;
-
-    public World getWorld() {
-        return world;
-    }
 
     public Application() {
         this.world = new World();
-        // Setups.setup0(this);
-        Setups.setup1(this);
+        // Setups.setup0(this); // should not see anything
+        // Setups.setup1(this); // sphere at the center
+        // Setups.setup2(this); // // should not see anything
+        // Setups.setup3(this);
+        // Setups.setup4(this);
+        // Setups.setup5(this); // two light sources
+        // Setups.setup6(this); // supersampling turned on
+        Setups.setup7(this); // phong blinn
     }
 
+    private World world;
+
+    public World getWorld() {
+        return this.world;
+    }
 
     public void start() {
         this.world.simulate();
@@ -22,4 +26,5 @@ public class Application {
         Application application = new Application();
         application.start();
     }
+
 }

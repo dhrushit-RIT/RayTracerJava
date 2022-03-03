@@ -11,11 +11,10 @@ public class FilmPlane implements Iterable<Pixel> {
 
     private ArrayList<ArrayList<Pixel>> filmPixels;
 
-    public FilmPlane(int width, int height, int numPixelsWidth, int numPixelsHeight, Vector position) {
-
+    public FilmPlane(int width, int height, int numPixelsWidth, int numPixelsHeight, Vector wPosition) {
         this.width = width;
         this.height = height;
-        this.cPosition = position;
+        this.cPosition = wPosition;
         this.filmPixels = new ArrayList<ArrayList<Pixel>>();
 
         this.numPixelsHeight = numPixelsHeight;
@@ -31,15 +30,15 @@ public class FilmPlane implements Iterable<Pixel> {
                 double pX = -width / 2 + col * Pixel.width + Pixel.width / 2;
                 double pY = -height / 2 + row * Pixel.height + Pixel.height / 2;
 
-                Vector pixelPositionWrtPlane = new Vector(pX, pY, 0);
-                Vector cPixelPos = Vector.add(this.cPosition, pixelPositionWrtPlane);
+                Vector cPixelPos = new Vector(pX, pY, this.cPosition.z);
+                // Vector cPixelPos = Util.add(this.cPosition, pixelPositionWrtPlane);
 
                 pixelRow.add(new Pixel(row, col, cPixelPos));
             }
             filmPixels.add(pixelRow);
         }
 
-        // System.out.println(this);
+        System.out.println(this);
     }
 
     @Override
@@ -76,12 +75,8 @@ public class FilmPlane implements Iterable<Pixel> {
 
         sb.append("FILM PLANE : \n");
         sb.append("\tposition " + cPosition + "\n");
-        sb.append("\tposition wrt camera" + Camera.toCameraSpace(cPosition) + "\n");
+        // sb.append("\tposition wrt camera" + Camera.toCameraSpace(cPosition) + "\n");
 
         return sb.toString();
     }
-    // public Ray get
-    // public Pixel getNextPixel() {
-
-    // }
 }
